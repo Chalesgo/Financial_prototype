@@ -1,1 +1,1 @@
-Chalesgo.github.io/Financial_prototype
+https://chalesgo.github.io/Financial_prototype/
