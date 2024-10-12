@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Tracker</h1>
+        <form id="financeForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date Receipt</th>
+                        <th>Items</th>
+                        <th>Category</th>
+                        <th>In Volume/Amount</th>
+                        <th>Out Volume/Amount</th>
+                        <th>Remarks/Classification</th>
+                        <th>Client Name for AR</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="date" id="date" name="date" required></td>
+                        <td><input type="text" id="productName" name="productName" required></td>
+                        <td>
+                            <select id="category" name="category">
+                                <option value="raw">Raw</option>
+                                <option value="income">Income</option>
+                            </select>
+                        </td>
+                        <td><input type="number" id="inAmount" name="inAmount"></td>
+                        <td><input type="number" id="outAmount" name="outAmount"></td>
+                        <td>
+                            <select id="remarks" name="remarks">
+                                <option value="externalStock">External Stock</option>
+                                <option value="sold">Sold</option>
+                                <option value="deliveryFee">Delivery Fee</option>
+                            </select>
+                        </td>
+                        <td><input type="text" id="clientName" name="clientName"></td>
+                        <td><input type="text" id="month" name="month" readonly required></td>
+                        <td><input type="text" id="year" name="year" readonly required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
