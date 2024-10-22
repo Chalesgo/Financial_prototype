@@ -1,7 +1,3 @@
-// Fetch data from the localStorage where it was stored in index.html
-const financeEntries = JSON.parse(localStorage.getItem('financeEntries')) || [];
-
-// Event listener for report form submission
 document.getElementById('reportForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -9,14 +5,14 @@ document.getElementById('reportForm').addEventListener('submit', function(e) {
     const endDate = new Date(document.getElementById('endDate').value);
     const categoryFilter = document.getElementById('categoryFilter').value;
 
-    // Filter entries based on date range and category
+    const financeEntries = JSON.parse(localStorage.getItem('financeEntries')) || [];
+
     const filteredEntries = financeEntries.filter(entry => {
         const entryDate = new Date(entry.date);
         return (entryDate >= startDate && entryDate <= endDate) &&
-            (categoryFilter === "" || entry.category === categoryFilter);
+               (categoryFilter === "" || entry.category === categoryFilter);
     });
 
-    // Display filtered data in report table
     const reportTableBody = document.getElementById('reportTable').getElementsByTagName('tbody')[0];
     reportTableBody.innerHTML = ''; // Clear previous results
 
@@ -34,4 +30,13 @@ document.getElementById('reportForm').addEventListener('submit', function(e) {
             <td>${entry.year}</td>
         `;
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (!loggedInUser || loggedInUser.role !== 'admin') {
+        alert('Access denied. Admins only.');
+        window.location.href = 'login.html';  // Redirect to login page if not an admin
+    }
 });

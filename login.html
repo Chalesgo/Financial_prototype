@@ -10,42 +10,17 @@
     <div class="login-container">
         <h1>Login</h1>
         <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
             </div>
             <button type="submit">Login</button>
+            <p id="error" style="color: red; display: none;">Invalid credentials. Please try again.</p>
         </form>
-
-        <div id="errorMessage"></div>
-
-        <div id="adminArea" style="display: none;">
-            <h2>Admin Area</h2>
-            <form id="createAccountForm">
-                <div class="input-group">
-                    <label for="newUsername">New Username</label>
-                    <input type="text" id="newUsername" required>
-                </div>
-                <div class="input-group">
-                    <label for="newPassword">New Password</label>
-                    <input type="password" id="newPassword" required>
-                </div>
-                <div class="input-group">
-                    <label for="permissions">Permissions</label>
-                    <select id="permissions" required>
-                        <option value="add">Add</option>
-                        <option value="view">View</option>
-                        <option value="delete">Delete</option>
-                        <option value="reports">View Reports</option>
-                    </select>
-                </div>
-                <button type="submit">Create Account</button>
-            </form>
-        </div>
     </div>
 
     <script src="login.js"></script>

@@ -9,43 +9,43 @@ document.getElementById('financeForm').addEventListener('submit', function (e) {
     const remarks = document.getElementById('remarks').value;
     const clientName = document.getElementById('clientName').value;
 
-    // Extracting month and year from the selected date
     const selectedDate = new Date(date);
     const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
     const year = selectedDate.getFullYear();
 
-    // Automatically set month and year
-    document.getElementById('month').value = month;
-    document.getElementById('year').value = year;
+    const entry = {
+        date: date,
+        productName: productName,
+        category: category,
+        inAmount: inAmount,
+        outAmount: outAmount,
+        remarks: remarks,
+        clientName: clientName,
+        month: month,
+        year: year
+    };
 
-    // Append data as a new row in the table
-    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-    const newRow = table.insertRow();
+    const financeEntries = JSON.parse(localStorage.getItem('financeEntries')) || [];
+    financeEntries.push(entry);
+    localStorage.setItem('financeEntries', JSON.stringify(financeEntries));
 
-    // Create cells with data and checkbox for selection
-    const selectCell = newRow.insertCell(0);
-    selectCell.innerHTML = `<input type="checkbox" class="rowCheckbox">`;
-
-    newRow.insertCell(1).innerHTML = date;
-    newRow.insertCell(2).innerHTML = productName;
-    newRow.insertCell(3).innerHTML = category;
-    newRow.insertCell(4).innerHTML = inAmount;
-    newRow.insertCell(5).innerHTML = outAmount;
-    newRow.insertCell(6).innerHTML = remarks;
-    newRow.insertCell(7).innerHTML = clientName;
-    newRow.insertCell(8).innerHTML = month;
-    newRow.insertCell(9).innerHTML = year;
-
-    // Reset form
+    addRowToTable(entry);
     document.getElementById('financeForm').reset();
 });
 
-// Deleting selected rows
-document.getElementById('deleteButton').addEventListener('click', function () {
-    const checkboxes = document.querySelectorAll('.rowCheckbox:checked');
-
-    checkboxes.forEach(function (checkbox) {
-        const row = checkbox.closest('tr');
-        row.remove(); // Remove the selected row
-    });
-});
+function addRowToTable(entry) {
+    const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    const newRow = tableBody.insertRow();
+    newRow.innerHTML = `
+        <td><input type="checkbox"></td>
+        <td>${entry.date}</td>
+        <td>${entry.productName}</td>
+        <td>${entry.category}</td>
+        <td>${entry.inAmount}</td>
+        <td>${entry.outAmount}</td>
+        <td>${entry.remarks}</td>
+        <td>${entry.clientName}</td>
+        <td>${entry.month}</td>
+        <td>${entry.year}</td>
+    `;
+}

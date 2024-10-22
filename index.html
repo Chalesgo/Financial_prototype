@@ -8,17 +8,15 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Financial Entry</a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Financial Entry</a></li>
+                <li><a href="reportgen.html">Reports</a></li> <!-- Link to Report Generation -->
                 <li><a href="#">Settings</a></li>
             </ul>
         </nav>
 
-        <!-- Main Content -->
         <div class="main-content">
             <h1>Financial Tracker</h1>
             <form id="financeForm">
@@ -62,15 +60,14 @@
                     </tbody>
                 </table>
                 <button type="submit">Submit</button>
-                <button type="button" id="deleteButton">Delete Selected</button> <!-- Delete Button -->
+                <button type="button" id="deleteButton">Delete Selected</button>
             </form>
 
-            <!-- Table to show submitted data -->
             <h2>Submitted Entries:</h2>
             <table id="dataTable">
                 <thead>
                     <tr>
-                        <th>Select</th> <!-- Checkbox Column -->
+                        <th>Select</th>
                         <th>Date Receipt</th>
                         <th>Items</th>
                         <th>Category</th>
@@ -92,3 +89,12 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<button id="logoutButton">Logout</button>
+
+<script>
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        localStorage.removeItem('loggedInUser');
+        window.location.href = 'login.html';
+    });
+</script>
