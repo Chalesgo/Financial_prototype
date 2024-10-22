@@ -18,29 +18,34 @@ document.getElementById('financeForm').addEventListener('submit', function (e) {
     document.getElementById('month').value = month;
     document.getElementById('year').value = year;
 
-    let output = `
-        <h2>Financial Entry:</h2>
-        <p><strong>Date:</strong> ${date}</p>
-        <p><strong>Product Name:</strong> ${productName}</p>
-        <p><strong>Category:</strong> ${category}</p>
-        <p><strong>In Amount:</strong> ${inAmount}</p>
-        <p><strong>Out Amount:</strong> ${outAmount}</p>
-        <p><strong>Remarks:</strong> ${remarks}</p>
-        <p><strong>Client Name (if Receivable):</strong> ${clientName}</p>
-        <p><strong>Month/Year:</strong> ${month}/${year}</p>
-    `;
+    // Append data as a new row in the table
+    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
 
-    document.getElementById('output').innerHTML = output;
+    // Create cells with data and checkbox for selection
+    const selectCell = newRow.insertCell(0);
+    selectCell.innerHTML = `<input type="checkbox" class="rowCheckbox">`;
+
+    newRow.insertCell(1).innerHTML = date;
+    newRow.insertCell(2).innerHTML = productName;
+    newRow.insertCell(3).innerHTML = category;
+    newRow.insertCell(4).innerHTML = inAmount;
+    newRow.insertCell(5).innerHTML = outAmount;
+    newRow.insertCell(6).innerHTML = remarks;
+    newRow.insertCell(7).innerHTML = clientName;
+    newRow.insertCell(8).innerHTML = month;
+    newRow.insertCell(9).innerHTML = year;
 
     // Reset form
     document.getElementById('financeForm').reset();
 });
 
-document.getElementById('date').addEventListener('change', function () {
-    const selectedDate = new Date(this.value);
-    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    const year = selectedDate.getFullYear();
+// Deleting selected rows
+document.getElementById('deleteButton').addEventListener('click', function () {
+    const checkboxes = document.querySelectorAll('.rowCheckbox:checked');
 
-    document.getElementById('month').value = month;
-    document.getElementById('year').value = year;
+    checkboxes.forEach(function (checkbox) {
+        const row = checkbox.closest('tr');
+        row.remove(); // Remove the selected row
+    });
 });
