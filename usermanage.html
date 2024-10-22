@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="usermanage.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Management</h1>
+        <form id="userForm">
+            <div class="input-group">
+                <label for="newUsername">Username</label>
+                <input type="text" id="newUsername" required>
+            </div>
+            <div class="input-group">
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <div class="input-group">
+                <label for="role">Role</label>
+                <select id="role" required>
+                    <option value="accountant">Accountant</option>
+                    <option value="employee">Employee</option>
+                </select>
+            </div>
+            <button type="submit">Create User</button>
+        </form>
+
+        <div id="userList"></div>
+    </div>
+
+    <script src="usermanage.js"></script>
+</body>
+</html>
